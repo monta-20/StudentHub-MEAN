@@ -1,0 +1,98 @@
+<!-- Page Heading -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">All Students</h6>
+  </div>
+  
+  <div class="card-body">
+      <a routerLink="/admin/addstudents" class="btn btn-primary" style="float: right;">Add Student</a>
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Age</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of dataArray; index as i">
+                      <td>{{ item.firstname }}</td>
+                      <td>{{ item.lastname }}</td>
+                      <td>{{ item.age }}</td>
+                      <td>{{ item.phone }}</td>
+                      <td>{{ item.email }}</td>
+                      <td>
+                          <button class="btn btn-success" (click)="getdata(item.firstname,item.lastname,item.age,item.phone,item.email,item._id)" data-toggle="modal" data-target="#exampleModal" style="margin-right: 10px;">Update</button>
+                          <button class="btn btn-info" style="margin-right: 10px;" (click)="details(item._id)">Details</button>
+                          <button class="btn btn-danger" (click)="delete(item._id, i)">Delete</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+<!-- Modal for Update -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Student</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form #f="ngForm" (ngSubmit)="update(f)">
+                  <!-- Firstname Input -->
+                  <div class="form-group">
+                      <label for="firstname">First Name</label>
+                      <input type="text" class="form-control" placeholder="First Name" name="firstname" required #firstname="ngModel" ngModel minlength="2" maxlength="20" autocomplete="off" [(ngModel)]="dataStudent.firstname">
+                      <div class="alert alert-danger" *ngIf="firstname.errors?.required && firstname.touched">First Name is required</div>
+                      <div class="alert alert-danger" *ngIf="firstname.errors?.minlength && firstname.touched">First Name must be a minimum of 2 characters</div>
+                  </div>
+
+                  <!-- Lastname Input -->
+                  <div class="form-group">
+                      <label for="lastname">Last Name</label>
+                      <input type="text" class="form-control" placeholder="Last Name" name="lastname" required #lastname="ngModel" ngModel minlength="2" maxlength="20" autocomplete="off" [(ngModel)]="dataStudent.lastname">
+                      <div class="alert alert-danger" *ngIf="lastname.errors?.required && lastname.touched">Last Name is required</div>
+                      <div class="alert alert-danger" *ngIf="lastname.errors?.minlength && lastname.touched">Last Name must be a minimum of 2 characters</div>
+                  </div>
+
+                  <!-- Email Input -->
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" placeholder="Email" name="email" required #email="ngModel" ngModel email autocomplete="off" [(ngModel)]="dataStudent.email">
+                      <div class="alert alert-danger" *ngIf="email.errors?.required && email.touched">Email is required</div>
+                      <div class="alert alert-danger" *ngIf="email.errors?.email && email.touched">The email must be valid</div>
+                  </div>
+
+                  <!-- Age Input -->
+                  <div class="form-group">
+                      <label for="age">Age</label>
+                      <input type="number" class="form-control" placeholder="Age" name="age" required #age="ngModel" ngModel autocomplete="off" [(ngModel)]="dataStudent.age">
+                      <div class="alert alert-danger" *ngIf="age.errors?.required && age.touched">Age is required</div>
+                  </div>
+
+                  <!-- Phone Input -->
+                  <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input type="number" class="form-control" placeholder="Phone" name="phone" required #phone="ngModel" ngModel autocomplete="off" [(ngModel)]="dataStudent.phone">
+                      <div class="alert alert-danger" *ngIf="phone.errors?.required && phone.touched">Phone is required</div>
+                  </div>
+
+                  <button class="btn btn-primary" [disabled]="f.invalid">Update Student</button>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="container mt-5">
+  <!-- Form for adding a student -->
+  <form #f="ngForm" (ngSubmit)="add(f)" class="shadow p-4 bg-light rounded">
+    
+    <h4 class="mb-4 text-primary">Add Student</h4>
+
+    <!-- Firstname input field with validation -->
+    <div class="form-group">
+      <label for="firstname">Firstname</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Firstname" 
+        name="firstname" 
+        required 
+        #firstname="ngModel" 
+        ngModel 
+        minlength="2" 
+        maxlength="20"
+        autocomplete="off"
+      >
+      <div class="alert alert-danger mt-1" *ngIf="firstname.errors?.required && firstname.touched">
+        Firstname is required
+      </div>
+      <div class="alert alert-danger mt-1" *ngIf="firstname.errors?.minlength && firstname.touched">
+        Firstname must be a minimum of 2 characters
+      </div>
+    </div>
+    
+    <!-- Lastname input field with validation -->
+    <div class="form-group">
+      <label for="lastname">Lastname</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Lastname" 
+        name="lastname" 
+        required 
+        #lastname="ngModel" 
+        ngModel 
+        minlength="2" 
+        maxlength="20"
+        autocomplete="off"
+      >
+      <div class="alert alert-danger mt-1" *ngIf="lastname.errors?.required && lastname.touched">
+        Lastname is required
+      </div>
+      <div class="alert alert-danger mt-1" *ngIf="lastname.errors?.minlength && lastname.touched">
+        Lastname must be a minimum of 2 characters
+      </div>
+    </div>
+    
+    <!-- Email input field with validation -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        placeholder="Email" 
+        name="email" 
+        required 
+        #email="ngModel" 
+        ngModel 
+        email
+        autocomplete="off"
+      >
+      <div class="alert alert-danger mt-1" *ngIf="email.errors?.required && email.touched">
+        Email is required
+      </div>
+      <div class="alert alert-danger mt-1" *ngIf="email.errors?.email && email.touched">
+        The email must be valid
+      </div>
+    </div>
+    
+    <!-- Age input field -->
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input 
+        type="number" 
+        class="form-control" 
+        placeholder="Age" 
+        name="age" 
+        required 
+        #age="ngModel" 
+        ngModel
+        autocomplete="off"
+      >
+      <div class="alert alert-danger mt-1" *ngIf="age.errors?.required && age.touched">
+        Age is required
+      </div>
+    </div>
+
+    <!-- Phone input field -->
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input 
+        type="number" 
+        class="form-control" 
+        placeholder="Phone" 
+        name="phone" 
+        required 
+        #phone="ngModel" 
+        ngModel
+        autocomplete="off"
+      >
+      <div class="alert alert-danger mt-1" *ngIf="phone.errors?.required && phone.touched">
+        Phone is required
+      </div>
+    </div>
+    
+    <!-- Message Error from Backend -->
+    <div class="alert alert-danger" *ngIf="messageError">
+      {{messageError}}
+    </div>
+
+    <!-- Submit button, disabled if form is invalid -->
+    <button class="btn btn-primary btn-block mt-4" [disabled]="f.invalid">Add Student</button>
+    
+  </form>
+</div>

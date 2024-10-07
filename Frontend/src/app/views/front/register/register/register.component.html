@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%; border-radius: 15px;">
+    <div class="text-center mb-4">
+      <h2 class="text-primary"><b>Register</b></h2> <!-- Changed to Bootstrap primary color -->
+      <hr style="width: 50px; border: 2px solid #007bff;" class="mx-auto"> <!-- Adjusted the border color to match Bootstrap's blue -->
+    </div>
+    <form #f="ngForm" (ngSubmit)="register(f)">
+      <div class="form-group mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input id="username" class="form-control" type="text" name="username" ngModel #username="ngModel" required placeholder="Enter your username">
+      </div>
+      <div class="form-group mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" class="form-control" type="email" name="email" ngModel #email="ngModel" email required placeholder="Enter your email">
+      </div>
+      <div class="form-group mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" class="form-control" type="password" name="password" ngModel #password="ngModel" required placeholder="Enter your password">
+      </div>
+      <div class="alert alert-danger" *ngIf="messageError">
+        {{messageError}}
+      </div>
+      <button type="submit" class="btn btn-primary w-100 py-2">Register</button> <!-- Changed button color to primary -->
+    </form>  
+  </div>
+</div>

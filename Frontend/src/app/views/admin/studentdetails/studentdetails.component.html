@@ -1,0 +1,38 @@
+<div class="container">
+    <!-- Display user details -->
+<div *ngIf="dataObject" class="card mt-4 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title text-primary">
+        <i class="fas fa-user"></i> User Details
+      </h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <i class="fas fa-user"></i> 
+          <strong> Firstname:</strong> {{ dataObject.firstname }}
+        </li>
+        <li class="list-group-item">
+          <i class="fas fa-user-tag"></i> 
+          <strong> Lastname:</strong> {{ dataObject.lastname }}
+        </li>
+        <li class="list-group-item">
+          <i class="fas fa-envelope"></i> 
+          <strong> Email:</strong> {{ dataObject.email }}
+        </li>
+        <li class="list-group-item">
+          <i class="fas fa-birthday-cake"></i> 
+          <strong> Age:</strong> {{ dataObject.age }}
+        </li>
+        <li class="list-group-item">
+          <i class="fas fa-phone"></i> 
+          <strong> Phone:</strong> {{ dataObject.phone }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Error message alert -->
+  <div class="alert alert-danger mt-4" *ngIf="messageErr">
+    <i class="fas fa-exclamation-circle"></i> {{ messageErr }}
+  </div>
+  
+</div>

@@ -1,0 +1,50 @@
+<!-- Sidebar/Menu -->
+<nav class="bg-dark vh-100 position-fixed d-flex flex-column p-4" style="width: 180px; z-index: 3;">
+  <div class="text-center mb-4">
+    <h3 class="text-light"><i class="fas fa-graduation-cap"></i> Student Manager</h3>
+  </div>
+
+  <ul class="nav flex-column text-light">
+    <li class="nav-item mb-2">
+      <a routerLink="/" class="nav-link text-light">
+        <i class="fas fa-home me-2"></i> Home
+      </a>
+    </li>
+    <li class="nav-item mb-2" *ngIf="!au.userLoggedIn()">
+      <a routerLink="/loginuser" class="nav-link text-light">
+        <i class="fas fa-sign-in-alt me-2"></i> Login
+      </a>
+    </li>
+    <li class="nav-item mb-2" *ngIf="!au.userLoggedIn()">
+      <a routerLink="/register" class="nav-link text-light">
+        <i class="fas fa-user-plus me-2"></i> Register
+      </a>
+    </li>
+    <li class="nav-item mb-2" *ngIf="au.userLoggedIn()">
+      <a routerLink="/students" class="nav-link text-light">
+        <i class="fas fa-user-graduate me-2"></i> Students
+      </a>
+    </li>
+    <li class="nav-item mb-2" *ngIf="au.userLoggedIn()">
+      <a (click)="logout()" class="nav-link text-light">
+        <i class="fas fa-sign-out-alt me-2"></i> Logout
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Mobile Off-canvas Sidebar -->
+<div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title text-light" id="mobileMenuLabel"><i class="fas fa-graduation-cap"></i> Student Manager</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    
+  </div>
+</div>
+
+<!-- Content -->
+<div class="content" style="margin-left: 280px;">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,25 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h1 class="display-4 text-primary mb-4"><b><i class="fas fa-user-graduate"></i> Student Details</b></h1> <!-- Changed text color to primary -->
+        <hr class="bg-primary" style="height: 3px; width: 50px;"> <!-- Changed hr color to primary -->
+        
+        <ul class="list-group" *ngIf="dataStudent">
+          <li class="list-group-item">
+            <i class="fas fa-user"></i> {{dataStudent.firstname}}
+          </li>
+          <li class="list-group-item">
+            <i class="fas fa-user"></i> {{dataStudent.lastname}}
+          </li>
+          <li class="list-group-item">
+            <i class="fas fa-envelope"></i> {{dataStudent.email}}
+          </li>
+        </ul>
+  
+        <div class="alert alert-danger mt-3" *ngIf="!dataStudent">
+          <i class="fas fa-exclamation-triangle"></i> We don't have this student in our database
+        </div>
+      </div>
+    </div>
+  </div>
+  
